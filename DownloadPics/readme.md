@@ -1,4 +1,4 @@
-#Tips:
+# Tips:
  - This script is written to download model pictures from website "http://www.xiannvku.com/"
  - 【search-1.txt】is used to  store the sorce code of search result page
  - 【test.py】is used to test wheather the part function is work properly. 
