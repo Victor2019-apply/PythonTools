@@ -4,8 +4,11 @@ import os
 import datetime
 import time
 
+# 保存下载断点时的文件夹
+interruptedPath = ''
+
 # 设置保存路径
-path = r'/home/victor/Downloads/夏茉GiGi/'
+path = r'/home/victor/Downloads/杨晨晨/'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
 }
@@ -57,33 +60,64 @@ def get_pages(url):
 
     savepath = path + (str)(title[0]) + '/'
 
-    print("创建文件夹：" + savepath)
+    # 如果该文件夹未创建则创建新文件夹
+    if not os.path.exists(savepath):
 
-    os.mkdir(savepath)
+        print("创建文件夹：" + savepath)
 
-    # 要请求的url列表
-    url_list = [
-        url + f'-{i}.html' for i in range(1, num)]
-    get_img(url_list, savepath)
+        os.mkdir(savepath)
+
+        # 要请求的url列表
+        url_list = [
+            url + f'-{i}.html' for i in range(1, num)]
+        try:
+            get_img(url_list, savepath)
+        except:  #若出现异常，则删除该文件夹
+            print("出现异常！\n" + title + " 未成功下载!")
+            os.removedirs(savepath)
+            
 
 def main():
     page_link = []
     i = 0
 
-    with open("/home/victor/Downloads/search-1.txt", "r") as f:  # 打开文件
+    with open("/home/victor/Downloads/search-2.txt", "r") as f:  # 打开文件
         data = f.read()  # 读取文件
 
         page_link = page_link + \
             list((set)(re.findall('<a href="(.*?)-1.html" target="_blank">', data)))
 
-    i = 1
-    for page in page_link:
-        get_pages(page)
-        print(f"正在获取第{i}套图。。。")
-        i = i + 1
+    '''
+    with open("/home/victor/Downloads/search-2.txt", "r") as f:  # 打开文件
+        data = f.read()  # 读取文件
+
+        page_link = page_link + \
+            list((set)(re.findall('<a href="(.*?)-1.html" target="_blank">', data)))
+
+    
+    with open("/home/victor/Downloads/search-3.txt", "r") as f:  # 打开文件
+        data = f.read()  # 读取文件
+
+        page_link = page_link + \
+            list((set)(re.findall('<a href="(.*?)-1.html" target="_blank">', data)))
+
+    with open("/home/victor/Downloads/search-4.txt", "r") as f:  # 打开文件
+        data = f.read()  # 读取文件
+
+        page_link = page_link + \
+            list((set)(re.findall('<a href="(.*?)-1.html" target="_blank">', data)))
+    '''
+
+    # 循环10次，确保能下载完所有图片
+    for t in range(10):
+        i = 1
+        for page in page_link:
+            print(f"正在获取第{i}套图。。。")
+            get_pages(page)
+            i = i + 1
     
     delta = (datetime.datetime.now() - start).total_seconds()
-    print(f"抓取{i}套图用时：{delta}s")
+    print(f"抓取{i-1}套图用时：{delta}s")
 
 
 if __name__ == '__main__':
