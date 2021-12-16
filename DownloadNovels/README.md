@@ -1,5 +1,5 @@
 # Tips
-- This script is written for downloading web-novel from website http://www.bz01.org/
+- This script is written for downloading web-novel from website http://www.kankeo.com/
 - Reference from blog https://cloud.tencent.com/developer/article/1507102
 
 
