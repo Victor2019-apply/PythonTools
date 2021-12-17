@@ -10,8 +10,8 @@ import time
 
 # 设置保存路径
 path = r"/home/victor/Downloads/"
-bookname = "人妻熟母们与少年的不伦欲恋"
-URL = "http://www.kankeo.com/index/3407"
+bookname = "覆雨后宫录"
+URL = "http://www.kankeo.com/index/2210"
 
 # 得到网页的html
 def getHtml(url):
