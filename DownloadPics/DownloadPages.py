@@ -8,7 +8,7 @@ import time
 interruptedPath = ''
 
 # 设置保存路径
-path = r'/home/victor/Downloads/杨晨晨/'
+path = r'/home/victor/Downloads/玥儿玥/'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
 }
@@ -81,7 +81,7 @@ def main():
     page_link = []
     i = 0
 
-    with open("/home/victor/Downloads/search-2.txt", "r") as f:  # 打开文件
+    with open("/home/victor/Downloads/search-1.txt", "r") as f:  # 打开文件
         data = f.read()  # 读取文件
 
         page_link = page_link + \
